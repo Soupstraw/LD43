@@ -1,6 +1,7 @@
-extends Node
+extends Node2D
 
 signal movement_input(dir)
+signal spellcast(pos)
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -22,3 +23,8 @@ func _input(event):
 			move_dir.x += 1
 		
 		emit_signal("movement_input", move_dir.normalized())
+		
+	# Handle spellcasting
+	if event is InputEventMouseButton:
+		if Input.is_action_just_pressed("RMB"):
+			emit_signal("spellcast", get_global_mouse_position())

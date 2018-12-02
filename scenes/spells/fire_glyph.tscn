@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Glyph.gd" type="Script" id=1]
+[ext_resource path="res://materials/glyphMat.tres" type="Material" id=2]
+[ext_resource path="res://sprites/symbols/symbol1.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+
+code = "shader_type canvas_item;
+
+uniform vec3 color;
+uniform float fill;
+
+void fragment(){
+	float is_filled = step(texture(TEXTURE, UV).r, fill);
+	COLOR = vec4(color, min(texture(TEXTURE, UV).a, is_filled));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource( 1 )
+shader_param/color = Vector3( 0.7, 0, 0 )
+shader_param/fill = 1.0
+_sections_unfolded = [ "Resource", "shader_param" ]
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "glyph_appear"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/fill")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_spawned"
+} ]
+}
+
+[node name="FireGlyph" type="Node2D"]
+
+material = SubResource( 2 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Animation", "Material" ]
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/glyph_appear = SubResource( 4 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+material = ExtResource( 2 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Material" ]
+
+

@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=12 format=2]
 
-[ext_resource path="res://sprites/floor.png" type="Texture" id=1]
-[ext_resource path="res://sprites/wall.png" type="Texture" id=2]
-[ext_resource path="res://sprites/stairs.png" type="Texture" id=3]
-[ext_resource path="res://sprites/bookcase.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tiles/floor.png" type="Texture" id=1]
+[ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tiles/stairs.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tiles/bookcase.png" type="Texture" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 

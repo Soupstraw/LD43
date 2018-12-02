@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://sprites/pistol.png" type="Texture" id=1]
+[ext_resource path="res://sprites/items/pistol.png" type="Texture" id=1]
+
 
 [node name="pistol" type="Sprite"]
 

@@ -1,9 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://sprites/floor.png" type="Texture" id=1]
-[ext_resource path="res://sprites/stairs.png" type="Texture" id=2]
-[ext_resource path="res://sprites/wall.png" type="Texture" id=3]
-[ext_resource path="res://sprites/bookcase.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tiles/floor.png" type="Texture" id=1]
+[ext_resource path="res://sprites/tiles/stairs.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tiles/bookcase.png" type="Texture" id=4]
+
+
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -16,7 +20,7 @@ closed = false
 cull_mode = 0
 polygon = PoolVector2Array( -8, -8, 8, -8 )
 
-[sub_resource type="NavigationPolygon" id=7]
+[sub_resource type="NavigationPolygon" id=3]
 
 vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
@@ -33,13 +37,13 @@ flags = 4
 gradient = SubResource( 4 )
 width = 1
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=6]
 
 closed = true
 cull_mode = 0
 polygon = PoolVector2Array( -0.5, -0.5, -0.5, 16.5, 16, 16, 16, -0.5 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
@@ -94,7 +98,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="wall" index="2"]
 
-navpoly = SubResource( 7 )
+navpoly = SubResource( 3 )
 enabled = true
 
 [node name="bookcase" type="Sprite" parent="." index="3"]
@@ -130,7 +134,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="bookcase" index="2"]
 
-navpoly = SubResource( 7 )
+navpoly = SubResource( 3 )
 enabled = true
 
 [node name="empty" type="Sprite" parent="." index="4"]
@@ -144,7 +148,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="empty" index="0"]
 
-occluder = SubResource( 3 )
+occluder = SubResource( 6 )
 light_mask = 1
 _sections_unfolded = [ "Transform" ]
 
@@ -161,7 +165,7 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="empty/StaticBody2D" index="0"]
 
 position = Vector2( 8, 8 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="empty2" type="Sprite" parent="." index="5"]
@@ -185,7 +189,7 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="empty2/StaticBody2D" index="0"]
 
 position = Vector2( 8, 8 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 
