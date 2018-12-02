@@ -1,0 +1,204 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/tileset/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Glyph_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://materials/glyphMat.tres" type="Material" id=3]
+[ext_resource path="res://sprites/symbols/symbol1.png" type="Texture" id=4]
+[ext_resource path="res://scripts/glyph.gd" type="Script" id=5]
+[ext_resource path="res://scenes/character.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/character.gd" type="Script" id=7]
+[ext_resource path="res://scripts/inputController.gd" type="Script" id=8]
+[ext_resource path="res://sprites/light.png" type="Texture" id=9]
+[ext_resource path="res://scenes/cultist.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/furniture/table.tscn" type="PackedScene" id=11]
+[ext_resource path="res://sprites/table.png" type="Texture" id=12]
+[ext_resource path="res://scenes/items/pistol.tscn" type="PackedScene" id=13]
+[ext_resource path="res://sprites/pistol.png" type="Texture" id=14]
+[ext_resource path="res://scenes/furniture/bars.tscn" type="PackedScene" id=15]
+[ext_resource path="res://sprites/bars.png" type="Texture" id=16]
+
+[node name="GUI" type="Node2D"]
+
+editor/display_folded = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="0"]
+
+visible = false
+color = Color( 0, 0, 0, 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Navigation2D" type="Navigation2D" parent="." index="1"]
+
+[node name="bgtiles" type="TileMap" parent="Navigation2D" index="0"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 655382, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 2, 0, 655390, 2, 0, 655391, 2, 0, 655392, 2, 0, 655393, 2, 0, 655394, 2, 0, 720918, 2, 0, 720919, 1, 0, 720920, 1, 0, 720921, 1, 0, 720922, 1, 0, 720923, 1, 0, 720924, 1, 0, 720925, 1, 0, 720926, 1, 0, 720927, 1, 0, 720928, 1, 0, 720929, 1, 0, 720930, 2, 0, 786454, 2, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 2, 0, 851990, 2, 0, 851991, 0, 0, 851992, 0, 0, 851993, 0, 0, 851994, 0, 0, 851995, 0, 0, 851996, 0, 0, 851997, 0, 0, 851998, 0, 0, 851999, 0, 0, 852000, 0, 0, 852001, 0, 0, 852002, 2, 0, 917526, 2, 0, 917527, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 917532, 2, 0, 917533, 2, 0, 917534, 2, 0, 917535, 2, 0, 917536, 3, 0, 917537, 3, 0, 917538, 2, 0, 983062, 2, 0, 983063, 1, 0, 983064, 1, 0, 983065, 1, 0, 983066, 1, 0, 983067, 1, 0, 983068, 1, 0, 983069, 1, 0, 983070, 1, 0, 983071, 1, 0, 983072, 3, 0, 983073, 3, 0, 983074, 2, 0, 1048598, 2, 0, 1048599, 0, 0, 1048600, 0, 0, 1048601, 0, 0, 1048602, 0, 0, 1048603, 0, 0, 1048604, 0, 0, 1048605, 0, 0, 1048606, 0, 0, 1048607, 0, 0, 1048608, 0, 0, 1048609, 0, 0, 1048610, 2, 0, 1114134, 2, 0, 1114135, 2, 0, 1114136, 2, 0, 1114137, 2, 0, 1114138, 2, 0, 1114139, 0, 0, 1114140, 2, 0, 1114141, 2, 0, 1114142, 2, 0, 1114143, 2, 0, 1114144, 0, 0, 1114145, 0, 0, 1114146, 2, 0, 1179670, 2, 0, 1179671, 1, 0, 1179672, 1, 0, 1179673, 1, 0, 1179674, 1, 0, 1179675, 0, 0, 1179676, 1, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 2, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 2, 0, 1245206, 2, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 2, 0, 1245216, 0, 0, 1245217, 0, 0, 1245218, 2, 0, 1310742, 2, 0, 1310743, 0, 0, 1310744, 0, 0, 1310745, 0, 0, 1310746, 0, 0, 1310747, 0, 0, 1310748, 0, 0, 1310749, 0, 0, 1310750, 0, 0, 1310751, 2, 0, 1310752, 0, 0, 1310753, 0, 0, 1310754, 2, 0, 1376278, 2, 0, 1376279, 0, 0, 1376280, 0, 0, 1376281, 0, 0, 1376282, 0, 0, 1376283, 0, 0, 1376284, 0, 0, 1376285, 0, 0, 1376286, 0, 0, 1376287, 2, 0, 1376288, 0, 0, 1376289, 0, 0, 1376290, 2, 0, 1441814, 2, 0, 1441815, 0, 0, 1441816, 0, 0, 1441817, 0, 0, 1441818, 0, 0, 1441819, 0, 0, 1441820, 0, 0, 1441821, 0, 0, 1441822, 0, 0, 1441823, 2, 0, 1441824, 0, 0, 1441825, 0, 0, 1441826, 2, 0, 1507350, 2, 0, 1507351, 0, 0, 1507352, 0, 0, 1507353, 0, 0, 1507354, 0, 0, 1507355, 0, 0, 1507356, 0, 0, 1507357, 0, 0, 1507358, 0, 0, 1507359, 2, 0, 1507360, 0, 0, 1507361, 0, 0, 1507362, 2, 0, 1572886, 2, 0, 1572887, 2, 0, 1572888, 2, 0, 1572889, 2, 0, 1572890, 2, 0, 1572891, 2, 0, 1572892, 2, 0, 1572893, 2, 0, 1572894, 2, 0, 1572895, 2, 0, 1572896, 0, 0, 1572897, 0, 0, 1572898, 2, 0, 1638422, 2, 0, 1638423, 1, 0, 1638424, 1, 0, 1638425, 1, 0, 1638426, 1, 0, 1638427, 1, 0, 1638428, 1, 0, 1638429, 1, 0, 1638430, 1, 0, 1638431, 1, 0, 1638432, 0, 0, 1638433, 0, 0, 1638434, 2, 0, 1703958, 2, 0, 1703959, 0, 0, 1703960, 0, 0, 1703961, 0, 0, 1703962, 0, 0, 1703963, 0, 0, 1703964, 0, 0, 1703965, 0, 0, 1703966, 0, 0, 1703967, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1703970, 2, 0, 1769494, 2, 0, 1769495, 0, 0, 1769496, 0, 0, 1769497, 0, 0, 1769498, 0, 0, 1769499, 0, 0, 1769500, 0, 0, 1769501, 0, 0, 1769502, 0, 0, 1769503, 0, 0, 1769504, 0, 0, 1769505, 0, 0, 1769506, 2, 0, 1835030, 2, 0, 1835031, 0, 0, 1835032, 0, 0, 1835033, 0, 0, 1835034, 0, 0, 1835035, 0, 0, 1835036, 0, 0, 1835037, 0, 0, 1835038, 0, 0, 1835039, 0, 0, 1835040, 0, 0, 1835041, 0, 0, 1835042, 2, 0, 1900566, 2, 0, 1900567, 0, 0, 1900568, 0, 0, 1900569, 0, 0, 1900570, 0, 0, 1900571, 0, 0, 1900572, 0, 0, 1900573, 0, 0, 1900574, 0, 0, 1900575, 0, 0, 1900576, 0, 0, 1900577, 0, 0, 1900578, 2, 0, 1966102, 2, 0, 1966103, 2, 0, 1966104, 2, 0, 1966105, 2, 0, 1966106, 2, 0, 1966107, 2, 0, 1966108, 2, 0, 1966109, 2, 0, 1966110, 2, 0, 1966111, 2, 0, 1966112, 2, 0, 1966113, 2, 0, 1966114, 2, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Glyphs" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="FireGlyph" type="Sprite" parent="Glyphs" index="0" instance=ExtResource( 2 )]
+
+material = ExtResource( 3 )
+position = Vector2( 476.141, 330.469 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Animation", "Material" ]
+animation_player = NodePath("AnimationPlayer")
+
+[node name="YSort" type="YSort" parent="." index="3"]
+
+editor/display_folded = true
+sort_enabled = true
+
+[node name="Hero" type="KinematicBody2D" parent="YSort" index="0" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+position = Vector2( 438.45, 266.517 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 7 )
+speed = 3000.0
+acceleration = 10
+
+[node name="Node" type="Node" parent="YSort/Hero" index="2"]
+
+script = ExtResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="YSort/Hero" index="3"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.25, 0.25 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_screen = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing", "Transform" ]
+
+[node name="Light2D" type="Light2D" parent="YSort/Hero" index="4"]
+
+position = Vector2( -0.449768, 4.48309 )
+scale = Vector2( 20, 20 )
+enabled = true
+editor_only = false
+texture = ExtResource( 9 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range", "Shadow", "Transform" ]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="YSort" index="1" instance=ExtResource( 10 )]
+
+position = Vector2( 396.632, 445.492 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 7 )
+speed = 32
+acceleration = 10
+
+[node name="table" type="Sprite" parent="YSort" index="2" instance=ExtResource( 11 )]
+
+editor/display_folded = true
+position = Vector2( 456, 309 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="pistol" type="Sprite" parent="YSort/table" index="1" instance=ExtResource( 13 )]
+
+position = Vector2( 0, -2 )
+texture = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="table2" type="Sprite" parent="YSort" index="3" instance=ExtResource( 11 )]
+
+editor/display_folded = true
+position = Vector2( 472, 309 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="table3" type="Sprite" parent="YSort" index="4" instance=ExtResource( 11 )]
+
+editor/display_folded = true
+position = Vector2( 488, 309 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bars" type="Sprite" parent="YSort" index="5" instance=ExtResource( 15 )]
+
+editor/display_folded = true
+position = Vector2( 520, 408 )
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bars2" type="Sprite" parent="YSort" index="6" instance=ExtResource( 15 )]
+
+editor/display_folded = true
+position = Vector2( 536, 408 )
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[connection signal="movement_input" from="YSort/Hero/Node" to="YSort/Hero" method="set_move_dir"]
+
+

@@ -1,0 +1,191 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sprites/floor.png" type="Texture" id=1]
+[ext_resource path="res://sprites/stairs.png" type="Texture" id=2]
+[ext_resource path="res://sprites/wall.png" type="Texture" id=3]
+[ext_resource path="res://sprites/bookcase.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 8 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+
+closed = false
+cull_mode = 0
+polygon = PoolVector2Array( -8, -8, 8, -8 )
+
+[sub_resource type="NavigationPolygon" id=7]
+
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
+
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 0.392157, 0.392157, 0.392157, 1, 0.394531, 0.394531, 0.394531, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+
+flags = 4
+gradient = SubResource( 4 )
+width = 1
+
+[sub_resource type="OccluderPolygon2D" id=3]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -0.5, -0.5, -0.5, 16.5, 16, 16, 16, -0.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 8 )
+
+[node name="Node" type="Node"]
+
+[node name="floor" type="Sprite" parent="." index="0"]
+
+position = Vector2( 24, 8 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="stairs" type="Sprite" parent="." index="1"]
+
+position = Vector2( 112, 16 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="wall" type="Sprite" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 64, 48 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="wall" index="1"]
+
+position = Vector2( -8, 8 )
+occluder = SubResource( 2 )
+light_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="wall" index="2"]
+
+navpoly = SubResource( 7 )
+enabled = true
+
+[node name="bookcase" type="Sprite" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 128, 64 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bookcase" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bookcase/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="bookcase" index="1"]
+
+position = Vector2( -8, 8 )
+occluder = SubResource( 2 )
+light_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="bookcase" index="2"]
+
+navpoly = SubResource( 7 )
+enabled = true
+
+[node name="empty" type="Sprite" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 0, 80 )
+texture = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="empty" index="0"]
+
+occluder = SubResource( 3 )
+light_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="empty" index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="empty/StaticBody2D" index="0"]
+
+position = Vector2( 8, 8 )
+shape = SubResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="empty2" type="Sprite" parent="." index="5"]
+
+position = Vector2( 0, 80 )
+texture = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="empty2" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="empty2/StaticBody2D" index="0"]
+
+position = Vector2( 8, 8 )
+shape = SubResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+

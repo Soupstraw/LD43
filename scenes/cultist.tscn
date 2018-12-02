@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/character.gd" type="Script" id=1]
+[ext_resource path="res://sprites/cultist.png" type="Texture" id=2]
+[ext_resource path="res://scenes/cultistAI.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.55948, 1.6801 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+speed = 32
+acceleration = 10
+
+[node name="Sprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0.209351, 5.44305 )
+shape = SubResource( 2 )
+
+[node name="AIController" type="Node" parent="." index="2"]
+
+script = ExtResource( 3 )
+
+
