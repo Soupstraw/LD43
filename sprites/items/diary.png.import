@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bed.png-55777055ac0c305776e845fe7a499c63.stex"
+path="res://.import/diary.png-cf96278538d67c9b8e32b6c1c66a1324.stex"
 
 [deps]
 
-source_file="res://sprites/tiles/bed.png"
-dest_files=[ "res://.import/bed.png-55777055ac0c305776e845fe7a499c63.stex" ]
+source_file="res://sprites/items/diary.png"
+dest_files=[ "res://.import/diary.png-cf96278538d67c9b8e32b6c1c66a1324.stex" ]
 
 [params]
 

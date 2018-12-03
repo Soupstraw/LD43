@@ -27,4 +27,10 @@ func _input(event):
 	# Handle spellcasting
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed("RMB"):
-			emit_signal("spellcast", get_global_mouse_position())
+			var inv = get_tree().get_nodes_in_group("Inventory")[0]
+			var spell = inv.try_cast_spell(false)
+			if spell == null:
+				get_tree().get_nodes_in_group("Player")[0].say("I don't think I can perform a ritual with these items")
+				return
+			inv.try_cast_spell(true)
+			emit_signal("spellcast", get_global_mouse_position(), spell)

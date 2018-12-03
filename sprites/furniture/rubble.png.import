@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bed.png-55777055ac0c305776e845fe7a499c63.stex"
+path="res://.import/rubble.png-5c5003227ad4f85e8c087216436edf62.stex"
 
 [deps]
 
-source_file="res://sprites/tiles/bed.png"
-dest_files=[ "res://.import/bed.png-55777055ac0c305776e845fe7a499c63.stex" ]
+source_file="res://sprites/furniture/rubble.png"
+dest_files=[ "res://.import/rubble.png-5c5003227ad4f85e8c087216436edf62.stex" ]
 
 [params]
 

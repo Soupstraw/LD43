@@ -1,6 +1,7 @@
 extends Node2D
 
 export(NodePath) var animation_player = NodePath()
+var pos
 
 func _ready():
 	find_node(animation_player).play("glyph_appear")
@@ -14,4 +15,7 @@ func _ready():
 func on_spawned():
 	var fire = load("res://scenes/Fire.tscn").instance()
 	add_child(fire)
-	fire.set_position(Vector2(0,-8))
+	fire.set_position(pos - Vector2(0,-8))
+
+func set_target(pos):
+	self.pos = pos

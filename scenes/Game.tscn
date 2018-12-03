@@ -6,13 +6,14 @@
 [ext_resource path="res://sprites/effects/light.png" type="Texture" id=4]
 [ext_resource path="res://scenes/cultist.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/furniture/table.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/items/pistol.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/items/Pistol.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/furniture/bars.tscn" type="PackedScene" id=8]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="0"]
 
+visible = false
 light_mask = 2
 color = Color( 0, 0, 0, 1 )
 _sections_unfolded = [ "Visibility" ]
@@ -116,11 +117,10 @@ position = Vector2( 384, 211 )
 
 [node name="table" parent="YSort" index="2" instance=ExtResource( 6 )]
 
+editor/display_folded = false
 position = Vector2( 456, 309 )
 
-[node name="pistol" parent="YSort/table" index="1" instance=ExtResource( 7 )]
-
-position = Vector2( 0, -2 )
+[node name="Pistol" parent="YSort/table" index="1" instance=ExtResource( 7 )]
 
 [node name="table2" parent="YSort" index="3" instance=ExtResource( 6 )]
 

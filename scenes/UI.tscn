@@ -1,16 +1,43 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/UI.gd" type="Script" id=1]
-[ext_resource path="res://sprites/symbols/symbol1.png" type="Texture" id=2]
-[ext_resource path="res://fonts/Benegraphic.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/ui/UItheme.tres" type="Theme" id=2]
+[ext_resource path="res://sprites/items/diary.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Inventory.gd" type="Script" id=4]
+[ext_resource path="res://fonts/Benegraphic.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/Diary.gd" type="Script" id=6]
+[ext_resource path="res://sprites/ui/page_flip.png" type="Texture" id=7]
+[ext_resource path="res://scenes/ui/button_flipped.tres" type="StyleBox" id=8]
+[ext_resource path="res://sprites/symbols/symbol1.png" type="Texture" id=9]
+[ext_resource path="res://scenes/ui/UIbox.tres" type="StyleBox" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 3 )
+font_data = ExtResource( 5 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="StyleBoxTexture" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 7 )
+region_rect = Rect2( -16, 0, 16, 16 )
+margin_left = 2.375
+margin_right = 10.625
+margin_top = 3.125
+margin_bottom = 9.25
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 0.701961, 0.67451, 0.67451, 1 )
+draw_center = true
+_sections_unfolded = [ "Axis Stretch", "Content Margin", "Expand Margin", "Margin", "Modulate", "Resource" ]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -30,38 +57,104 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Visibility" ]
+theme = ExtResource( 2 )
+_sections_unfolded = [ "Mouse", "Theme", "Visibility" ]
 
-[node name="ItemList" type="ItemList" parent="GUI" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI" index="0"]
 
-anchor_left = 0.25
+anchor_left = 0.15
 anchor_top = 1.0
-anchor_right = 0.75
+anchor_right = 0.85
 anchor_bottom = 1.0
-margin_left = -256.0
 margin_top = -64.0
-margin_right = 256.0
-grow_vertical = 0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Button" type="Button" parent="GUI/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-items = [ "", ExtResource( 2 ), false ]
-select_mode = 0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 1
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="TextureRect" type="TextureRect" parent="GUI/HBoxContainer/Button" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -6.0
+margin_bottom = -6.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+_sections_unfolded = [ "Margin", "Mouse" ]
+
+[node name="ItemList" type="ItemList" parent="GUI/HBoxContainer" index="1" groups=[
+"Inventory",
+]]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_right = 716.0
+margin_bottom = 64.0
+grow_vertical = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+hint_tooltip = "Wololo"
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+items = [  ]
+select_mode = 1
 allow_reselect = true
 max_columns = 6
 same_column_width = true
 fixed_column_width = 64
 icon_mode = 1
 fixed_icon_size = Vector2( 64, 64 )
-_sections_unfolded = [ "Anchor", "Columns", "Grow Direction", "Icon", "Margin", "Mouse", "Size Flags" ]
+script = ExtResource( 4 )
+_sections_unfolded = [ "Anchor", "Columns", "Grow Direction", "Hint", "Icon", "Margin", "Mouse", "Rect", "Size Flags" ]
 
 [node name="BloodCounter" type="Label" parent="GUI" index="1"]
 
@@ -84,5 +177,222 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "BBCode", "custom_colors", "custom_fonts" ]
+
+[node name="Diary" type="Panel" parent="GUI" index="2" groups=[
+"Diary",
+]]
+
+visible = false
+anchor_left = 0.14131
+anchor_top = 0.05527
+anchor_right = 0.86752
+anchor_bottom = 0.83419
+margin_top = -0.161999
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 6 )
+_sections_unfolded = [ "Margin", "Mouse", "Theme" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Diary" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="LeftPage" type="Container" parent="GUI/Diary/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 365.0
+margin_bottom = 467.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Hint", "Rect", "Size Flags" ]
+
+[node name="Button2" type="Button" parent="GUI/Diary/HBoxContainer/LeftPage" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 4.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 1
+_sections_unfolded = [ "Hint", "Theme", "custom_styles" ]
+
+[node name="Label" type="Label" parent="GUI/Diary/HBoxContainer/LeftPage" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+text = "Hello hello"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
+
+[node name="VSeparator" type="VSeparator" parent="GUI/Diary/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 369.0
+margin_right = 373.0
+margin_bottom = 467.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="RightPage" type="MarginContainer" parent="GUI/Diary/HBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 377.0
+margin_right = 743.0
+margin_bottom = 467.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags" ]
+
+[node name="Button" type="Button" parent="GUI/Diary/HBoxContainer/RightPage" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 366.0
+margin_bottom = 467.0
+grow_vertical = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/disabled = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "custom_fonts", "custom_styles" ]
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Diary/HBoxContainer/RightPage" index="1"]
+
+modulate = Color( 0.582031, 0.120499, 0.120499, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 366.0
+margin_bottom = 467.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+_sections_unfolded = [ "Anchor", "Margin", "Mouse", "Visibility" ]
+
+[node name="Button" type="Button" parent="GUI/Diary" index="1"]
+
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -127.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 10 )
+custom_styles/disabled = ExtResource( 10 )
+custom_styles/normal = ExtResource( 10 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Close"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_styles" ]
+
+[connection signal="pressed" from="GUI/HBoxContainer/Button" to="GUI/Diary" method="show"]
+
+[connection signal="pressed" from="GUI/Diary/HBoxContainer/LeftPage/Button2" to="GUI/Diary" method="prev_entry"]
+
+[connection signal="pressed" from="GUI/Diary/HBoxContainer/RightPage/Button" to="GUI/Diary" method="next_entry"]
+
+[connection signal="pressed" from="GUI/Diary/Button" to="GUI/Diary" method="hide"]
 
 

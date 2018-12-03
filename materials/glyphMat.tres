@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=4]
 
 code = "shader_type canvas_item;
 
@@ -16,7 +16,7 @@ void fragment(){
 
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource( 1 )
+shader = SubResource( 4 )
 shader_param/color = Vector3( 0.7, 0, 0 )
 shader_param/fill = 1.0
 _sections_unfolded = [ "Resource", "shader_param" ]

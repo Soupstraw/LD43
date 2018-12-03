@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://sprites/tiles/floor.png" type="Texture" id=1]
-[ext_resource path="res://sprites/tiles/stairs.png" type="Texture" id=2]
-[ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=3]
-[ext_resource path="res://sprites/tiles/bookcase.png" type="Texture" id=4]
-
-
-
-
+[ext_resource path="res://sprites/tiles/dirt_road.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tiles/dirt_road2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tiles/grass.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tiles/stairs.png" type="Texture" id=5]
+[ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=6]
+[ext_resource path="res://sprites/tiles/outer_wall.png" type="Texture" id=7]
+[ext_resource path="res://sprites/tiles/bookcase.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -29,7 +29,7 @@ outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
 [sub_resource type="Gradient" id=4]
 
 offsets = PoolRealArray( 0, 1 )
-colors = PoolColorArray( 0.392157, 0.392157, 0.392157, 1, 0.394531, 0.394531, 0.394531, 1 )
+colors = PoolColorArray( 0.392157, 0.392157, 0.392157, 0, 0.394531, 0.394531, 0.394531, 0 )
 
 [sub_resource type="GradientTexture" id=5]
 
@@ -56,20 +56,39 @@ position = Vector2( 24, 8 )
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="stairs" type="Sprite" parent="." index="1"]
+[node name="dirt_road" type="Sprite" parent="." index="1"]
+
+position = Vector2( 96, 96 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="dirt_road2" type="Sprite" parent="." index="2"]
+
+position = Vector2( 144, 112 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="grass" type="Sprite" parent="." index="3"]
+
+position = Vector2( 48, 128 )
+texture = ExtResource( 4 )
+flip_h = true
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="stairs" type="Sprite" parent="." index="4"]
 
 position = Vector2( 112, 16 )
-texture = ExtResource( 2 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="wall" type="Sprite" parent="." index="2"]
+[node name="wall" type="Sprite" parent="." index="5"]
 
 editor/display_folded = true
 position = Vector2( 64, 48 )
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -101,11 +120,75 @@ _sections_unfolded = [ "Transform" ]
 navpoly = SubResource( 3 )
 enabled = true
 
-[node name="bookcase" type="Sprite" parent="." index="3"]
+[node name="wall2" type="Sprite" parent="." index="6"]
 
 editor/display_folded = true
-position = Vector2( 128, 64 )
-texture = ExtResource( 4 )
+position = Vector2( 112, 64 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall2" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="wall2" index="1"]
+
+position = Vector2( -8, 8 )
+occluder = SubResource( 2 )
+light_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="wall2" index="2"]
+
+navpoly = SubResource( 3 )
+enabled = true
+
+[node name="wall3" type="Sprite" parent="." index="7"]
+
+position = Vector2( 112, 64 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wall3" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall3/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="wall3" index="1"]
+
+navpoly = SubResource( 3 )
+enabled = true
+
+[node name="bookcase" type="Sprite" parent="." index="8"]
+
+editor/display_folded = true
+position = Vector2( 160, 48 )
+texture = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -137,7 +220,7 @@ _sections_unfolded = [ "Transform" ]
 navpoly = SubResource( 3 )
 enabled = true
 
-[node name="empty" type="Sprite" parent="." index="4"]
+[node name="empty" type="Sprite" parent="." index="9"]
 
 editor/display_folded = true
 position = Vector2( 0, 80 )
@@ -168,7 +251,7 @@ position = Vector2( 8, 8 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="empty2" type="Sprite" parent="." index="5"]
+[node name="empty2" type="Sprite" parent="." index="10"]
 
 position = Vector2( 0, 80 )
 texture = SubResource( 5 )

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://sprites/characters/hero.png" type="Texture" id=2]
+[ext_resource path="res://sprites/effects/particle.png" type="Texture" id=3]
+[ext_resource path="res://fonts/Benegraphic.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -17,8 +19,62 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 3.07545, 1.35298 )
 
-[node name="Hero" type="KinematicBody2D" index="0" groups=[
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 3
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color = Color( 0.695312, 0.0950623, 0.0950623, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Animation", "Color", "Hue Variation", "Trail" ]
+
+[sub_resource type="CanvasItemMaterial" id=4]
+
+render_priority = 0
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=5]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="Hero" type="KinematicBody2D" groups=[
 "Character",
+"Player",
 ]]
 
 input_pickable = false
@@ -40,5 +96,55 @@ animation = "default"
 
 position = Vector2( 0.144337, 5.94366 )
 shape = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="." index="2"]
+
+position = Vector2( -0.157776, 4.89116 )
+emitting = false
+amount = 8
+lifetime = 1.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+[node name="Label" type="Label" parent="." index="3"]
+
+material = SubResource( 4 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -25.0
+margin_top = -24.0
+margin_right = 75.0
+margin_bottom = 10.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 5 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Material", "Rect", "Visibility", "custom_fonts" ]
+
+[connection signal="health_changed" from="." to="Particles2D" method="restart"]
 
 

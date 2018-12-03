@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bed.png-55777055ac0c305776e845fe7a499c63.stex"
+path="res://.import/page_flip.png-a8cd75aa1cf3f648da246582d4c045ec.stex"
 
 [deps]
 
-source_file="res://sprites/tiles/bed.png"
-dest_files=[ "res://.import/bed.png-55777055ac0c305776e845fe7a499c63.stex" ]
+source_file="res://sprites/ui/page_flip.png"
+dest_files=[ "res://.import/page_flip.png-a8cd75aa1cf3f648da246582d4c045ec.stex" ]
 
 [params]
 
@@ -15,7 +15,7 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=2
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
